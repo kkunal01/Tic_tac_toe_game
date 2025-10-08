@@ -28,7 +28,12 @@ body{
     display: none;
 }
 
-#msg {
+.msgCtnr {
     font-size: 50px;
     padding-top: 150px;
+}
+#newGame {
+    font-size: inherit;
+    background-color: greenyellow;
+    border-radius: 10%;
 }

@@ -2,6 +2,8 @@ let cells= document.querySelectorAll('.cell');
 let currpla = true; //true for '0';
 let ct =0;
 let winr= false;
+let msg_con = document.querySelector('.msgCtnr');
+let newGame = document.querySelector('#newGame');
 let msg = document.querySelector('#msg');
 let winPat =[
     [0, 1, 2],
@@ -27,10 +29,10 @@ for (let cell of cells){
         cell.disabled = true;
         checkwinner();
         if(ct===9 && !winr) {
-            msg.classList.remove('hide');
-            msg.innerHTML += '<br> Match draw';
+            msg_con.classList.remove('hide');
+            msg.textContent = 'Match draw';
         }
-    })
+    });
 }
 let checkwinner = () => {
     for(let ind of winPat){
@@ -46,14 +48,25 @@ let checkwinner = () => {
             break;
         }
         }
-}
+};
 let winnerfound = (it1) => {
     // disablecell
     for(let cell of cells){
         cell.disabled = true;
     }
     // showmsg
-    msg.classList.remove('hide');
-    msg.textContent+=' Winner is '+ it1;
+    msg_con.classList.remove('hide');
+    msg.textContent=`Winner is ${it1}`;
+};
+const resetgame = () => {
+    winr = false;
+    currpla=true;
+    ct=0;
+    for(let cell of cells){
+        cell.disabled = false;
+        cell.innerText = '';
+    }
+    msg_con.classList.add('hide');
+} ;
 
-}
+newGame.addEventListener('click',resetgame);
