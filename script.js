@@ -1,5 +1,7 @@
 let cells= document.querySelectorAll('.cell');
 let currpla = true; //true for '0';
+let ct =0;
+let winr= false;
 let msg = document.querySelector('#msg');
 let winPat =[
     [0, 1, 2],
@@ -16,14 +18,18 @@ for (let cell of cells){
         if (currpla){
             cell.textContent='0';
             currpla = false;
-            cell.disable
         }
         else {
             cell.textContent = 'X';
             currpla = true;
         }
+        ct++;
         cell.disabled = true;
         checkwinner();
+        if(ct===9 && !winr) {
+            msg.classList.remove('hide');
+            msg.innerHTML += '<br> Match draw';
+        }
     })
 }
 let checkwinner = () => {
@@ -34,8 +40,11 @@ let checkwinner = () => {
         if (it1 === '' || it2 === '' || it3 === ''){
             continue;
         }
-        else if(it1==it2 && it2==it3 && it3==it1)
+        else if(it1==it2 && it2==it3 && it3==it1){
+            winr = true;
             winnerfound(it1)
+            break;
+        }
         }
 }
 let winnerfound = (it1) => {
