@@ -20,13 +20,16 @@ for (let cell of cells){
         if (currpla){
             cell.textContent='0';
             currpla = false;
+            cell.style.color='#00ff7f';
         }
         else {
             cell.textContent = 'X';
             currpla = true;
+            cell.style.color='#ff4500';
         }
         ct++;
-        cell.disabled = true;
+        // cell.disabled = true;
+        cell.style.pointerEvents = "none";
         checkwinner();
         if(ct===9 && !winr) {
             msg_con.classList.remove('hide');
@@ -52,7 +55,8 @@ let checkwinner = () => {
 let winnerfound = (it1) => {
     // disablecell
     for(let cell of cells){
-        cell.disabled = true;
+        // cell.disabled = true;
+        cell.style.pointerEvents = "none";
     }
     // showmsg
     msg_con.classList.remove('hide');
@@ -63,8 +67,9 @@ const resetgame = () => {
     currpla=true;
     ct=0;
     for(let cell of cells){
-        cell.disabled = false;
+        cell.style.pointerEvents ='';
         cell.innerText = '';
+        cell.style.color = '';
     }
     msg_con.classList.add('hide');
 } ;
